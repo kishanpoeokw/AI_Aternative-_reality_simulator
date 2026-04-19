@@ -30,8 +30,6 @@
 
 <br/>
 
-![App Screenshot](screenshots/hero.png)
-<!-- Replace with your actual screenshot -->
 
 </div>
 
@@ -247,20 +245,6 @@ ai-alternate-simulator/
     ├── creative-mode.png
     └── map-mode.png
 ```
-
----
-
-## 🖼️ Screenshots
-
-| Classic Mode | Timeline Mode |
-|---|---|
-| ![Classic](screenshots/classic-mode.png) | ![Timeline](screenshots/timeline-mode.png) |
-
-| Debate Mode | Multiverse Map |
-|---|---|
-| ![Debate](screenshots/debate-mode.png) | ![Map](screenshots/map-mode.png) |
-
-<!-- Replace placeholder paths with your actual screenshots -->
 
 ---
 
