@@ -668,7 +668,7 @@ textarea::placeholder{color:var(--text3)}
           <span class="kbd">Ctrl+1–5</span> Switch Mode &nbsp;
           <span class="kbd">Ctrl+Enter</span> Send &nbsp;
           <span class="kbd">Ctrl+N</span> New Chat &nbsp;
-          <span class="kbd">Ctrl+V</span> Voice &nbsp;
+          <span class="kbd">Ctrl+M</span> Voice &nbsp;
           <span class="kbd">Esc</span> Clear
         </div>
       </div>
@@ -1289,7 +1289,7 @@ document.addEventListener('keydown',function(e){
   if((e.ctrlKey||e.metaKey)&&e.key==='4'){e.preventDefault();openPersonaModal()}
   if((e.ctrlKey||e.metaKey)&&e.key==='5'){e.preventDefault();setMode('map')}
   if((e.ctrlKey||e.metaKey)&&e.key==='n'){e.preventDefault();newChat()}
-  if((e.ctrlKey||e.metaKey)&&e.key==='v'&&!e.shiftKey){e.preventDefault();toggleVoice()}
+  if((e.ctrlKey||e.metaKey)&&e.key==='m'&&!e.shiftKey){e.preventDefault();toggleVoice()}
   if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){sendMessage()}
 });
 function hideWelcome(){var w=document.getElementById('welcome');if(w)w.remove()}
@@ -1601,7 +1601,7 @@ function newChat(){
     +'<span class="kbd">Ctrl+1–5</span> Switch Mode &nbsp;'
     +'<span class="kbd">Ctrl+Enter</span> Send &nbsp;'
     +'<span class="kbd">Ctrl+N</span> New Chat &nbsp;'
-    +'<span class="kbd">Ctrl+V</span> Voice &nbsp;'
+    +'<span class="kbd">Ctrl+M</span> Voice &nbsp;'
     +'<span class="kbd">Esc</span> Clear'
     +'</div>';
   msgs.appendChild(w);
