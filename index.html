@@ -425,18 +425,41 @@ textarea::placeholder{color:var(--text3)}
 
 @media(max-width:700px){.sidebar{display:none}.plaus-wrap{display:none}.header-sub{display:none}}
 
-/* ── API KEY NOTIFICATION BANNER ─────────────────── */
-.api-notif{position:fixed;top:56px;left:50%;transform:translateX(-50%) translateY(-80px);z-index:350;display:flex;align-items:center;gap:12px;background:var(--surface);border:1.5px solid var(--classic-mid);border-radius:14px;padding:13px 16px;max-width:420px;width:calc(100% - 32px);box-shadow:0 8px 32px rgba(0,0,0,.4);transition:transform .4s cubic-bezier(.34,1.3,.64,1),opacity .4s ease;opacity:0;pointer-events:none}
-.api-notif.show{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:all}
-.api-notif-icon{width:36px;height:36px;border-radius:10px;background:var(--classic-dim);border:1px solid var(--classic-mid);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.api-notif-body{flex:1;min-width:0}
-.api-notif-title{font-size:12.5px;font-weight:700;font-family:var(--font-head);color:var(--text);margin-bottom:2px;letter-spacing:.1px}
-.api-notif-sub{font-size:11px;color:var(--text2);line-height:1.5}
-.api-notif-sub span{color:var(--classic);font-weight:600}
-.api-notif-btn{padding:7px 14px;background:var(--classic);color:#08090d;border:none;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:var(--font-head);letter-spacing:.3px;white-space:nowrap;flex-shrink:0;transition:all .2s}
-.api-notif-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.api-notif-dismiss{width:22px;height:22px;border-radius:50%;border:none;background:transparent;color:var(--text3);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;padding:0;line-height:1}
-.api-notif-dismiss:hover{color:var(--creative);background:var(--creative-dim)}
+/* ── API KEY FULLSCREEN OVERLAY ──────────────────── */
+@keyframes apiOverlayIn{from{opacity:0}to{opacity:1}}
+@keyframes apiCardIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes apiCountdown{from{width:100%}to{width:0%}}
+.api-overlay{position:fixed;inset:0;z-index:600;background:rgba(5,5,12,.92);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(8px)}
+.api-overlay.show{opacity:1;pointer-events:all;animation:apiOverlayIn .35s ease}
+.api-overlay-card{background:var(--surface);border:1px solid var(--border2);border-radius:24px;padding:0;max-width:480px;width:100%;overflow:hidden;position:relative;animation:apiCardIn .45s cubic-bezier(.34,1.1,.64,1)}
+.api-overlay-top{padding:36px 36px 28px;text-align:center;position:relative}
+.api-overlay-top::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,197,71,.07),rgba(79,195,247,.04),rgba(240,98,146,.04));pointer-events:none}
+.api-overlay-logo{width:64px;height:64px;border-radius:20px;background:var(--classic);display:inline-flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:16px;font-weight:800;font-family:var(--font-head);color:#08090d;box-shadow:0 8px 28px rgba(232,197,71,.3)}
+.api-overlay-title{font-family:var(--font-head);font-size:24px;font-weight:800;letter-spacing:-.5px;color:var(--text);margin-bottom:8px}
+.api-overlay-sub{font-size:13px;color:var(--text2);line-height:1.65;max-width:340px;margin:0 auto}
+.api-overlay-sub strong{color:var(--classic)}
+.api-overlay-steps{display:flex;flex-direction:column;gap:10px;padding:0 36px 8px}
+.api-overlay-step{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border)}
+.api-step-num{width:22px;height:22px;border-radius:50%;background:var(--classic-dim);border:1px solid var(--classic-mid);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--classic);font-family:var(--font-head);flex-shrink:0;margin-top:1px}
+.api-step-text{font-size:12px;color:var(--text2);line-height:1.55}
+.api-step-text strong{color:var(--text);font-weight:600}
+.api-overlay-input-wrap{padding:16px 36px 8px}
+.api-overlay-input-row{display:flex;gap:8px}
+.api-overlay-input{flex:1;padding:12px 14px;border:1.5px solid var(--border2);border-radius:var(--radius-sm);font-size:13px;color:var(--text);background:var(--surface2);outline:none;font-family:var(--font-body);transition:all .2s}
+.api-overlay-input:focus{border-color:var(--classic);box-shadow:0 0 0 3px rgba(232,197,71,.15)}
+.api-overlay-input::placeholder{color:var(--text3)}
+.api-overlay-go{padding:12px 20px;background:var(--classic);color:#08090d;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:800;cursor:pointer;font-family:var(--font-head);letter-spacing:.4px;transition:all .2s;white-space:nowrap;box-shadow:0 4px 16px rgba(232,197,71,.25)}
+.api-overlay-go:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.api-overlay-err{font-size:11px;color:var(--creative);padding:4px 0 0 2px;min-height:16px}
+.api-overlay-bottom{padding:12px 36px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.api-overlay-skip{background:transparent;border:none;color:var(--text3);font-size:11.5px;cursor:pointer;font-family:var(--font-body);transition:color .15s;text-decoration:underline;text-underline-offset:3px}
+.api-overlay-skip:hover{color:var(--text2)}
+.api-overlay-link{font-size:11px;color:var(--text3);line-height:1.5}
+.api-overlay-link a{color:var(--classic);text-decoration:none;font-weight:600}
+.api-overlay-link a:hover{text-decoration:underline}
+.api-overlay-bar{height:3px;background:var(--border2);margin:0}
+.api-overlay-bar-fill{height:100%;background:var(--classic);width:100%;transition:none}
+.api-overlay-bar-fill.drain{transition:width 10s linear;width:0%}
 </style>
 </head>
 <body>
@@ -552,15 +575,41 @@ textarea::placeholder{color:var(--text3)}
 <!-- ── TOAST ──────────────────────────────────────── -->
 <div class="toast" id="toast"></div>
 
-<!-- ── API KEY NOTIFICATION ──────────────────────── -->
-<div class="api-notif" id="apiNotif">
-  <div class="api-notif-icon">🔑</div>
-  <div class="api-notif-body">
-    <div class="api-notif-title">Gemini API Key Required</div>
-    <div class="api-notif-sub">Add your free key to start simulating. Get it at <span>aistudio.google.com</span></div>
+<!-- ── API KEY FULLSCREEN OVERLAY ────────────────── -->
+<div class="api-overlay" id="apiOverlay">
+  <div class="api-overlay-card">
+    <div class="api-overlay-bar"><div class="api-overlay-bar-fill" id="apiOverlayBar"></div></div>
+    <div class="api-overlay-top">
+      <div class="api-overlay-logo">RS</div>
+      <div class="api-overlay-title">One step before you go</div>
+      <p class="api-overlay-sub">Reality Simulator runs on <strong>Gemini AI</strong>. Add your free API key to unlock all 5 modes — Classic, Timeline, Creative, Debate &amp; Map.</p>
+    </div>
+    <div class="api-overlay-steps">
+      <div class="api-overlay-step">
+        <div class="api-step-num">1</div>
+        <div class="api-step-text">Go to <strong>aistudio.google.com</strong> and sign in with any Google account</div>
+      </div>
+      <div class="api-overlay-step">
+        <div class="api-step-num">2</div>
+        <div class="api-step-text">Click <strong>"Get API Key"</strong> → Create a new key — it's completely free</div>
+      </div>
+      <div class="api-overlay-step">
+        <div class="api-step-num">3</div>
+        <div class="api-step-text">Paste it below. It stays <strong>only in your browser</strong> — never sent to any server</div>
+      </div>
+    </div>
+    <div class="api-overlay-input-wrap">
+      <div class="api-overlay-input-row">
+        <input type="password" class="api-overlay-input" id="apiOverlayInput" placeholder="AIzaSy..." />
+        <button class="api-overlay-go" onclick="saveApiOverlay()">Launch →</button>
+      </div>
+      <div class="api-overlay-err" id="apiOverlayErr"></div>
+    </div>
+    <div class="api-overlay-bottom">
+      <button class="api-overlay-skip" onclick="dismissApiOverlay()">Skip for now — I'll add it later</button>
+      <div class="api-overlay-link">Get key free at <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a></div>
+    </div>
   </div>
-  <button class="api-notif-btn" onclick="dismissApiNotif(true)">Add Key →</button>
-  <button class="api-notif-dismiss" onclick="dismissApiNotif(false)" title="Dismiss">✕</button>
 </div>
 
 <!-- ── HEADER ─────────────────────────────────────── -->
@@ -692,7 +741,7 @@ textarea::placeholder{color:var(--text3)}
           <span class="kbd">Ctrl+1–5</span> Switch Mode &nbsp;
           <span class="kbd">Ctrl+Enter</span> Send &nbsp;
           <span class="kbd">Ctrl+N</span> New Chat &nbsp;
-          <span class="kbd">Ctrl+V</span> Voice &nbsp;
+          <span class="kbd">Ctrl+M</span> Voice &nbsp;
           <span class="kbd">Esc</span> Clear
         </div>
       </div>
@@ -1273,22 +1322,35 @@ function clearApiKey(){
 function refreshApiDot(){var has=!!sessionStorage.getItem('gemKey');var dot=document.getElementById('apiDot');if(dot)dot.className='dot'+(has?' on':'')}
 function refreshApiStatus(){var has=!!sessionStorage.getItem('gemKey');var s=document.getElementById('apiStatus');s.style.color=has?'var(--classic)':'var(--text3)';s.textContent=has?'Key is set.':'No key set yet.'}
 
-// ── API KEY NOTIFICATION ──────────────────────────
-var _apiNotifTimer=null;
+// ── API KEY FULLSCREEN OVERLAY ───────────────────
 function showApiNotif(){
-  var n=document.getElementById('apiNotif');
-  if(!n)return;
-  n.classList.add('show');
-  _apiNotifTimer=setTimeout(function(){hideApiNotif()},8000);
+  var o=document.getElementById('apiOverlay');
+  if(!o)return;
+  o.classList.add('show');
+  // countdown bar
+  var bar=document.getElementById('apiOverlayBar');
+  if(bar){
+    bar.style.transition='none';bar.style.width='100%';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){bar.classList.add('drain')})});
+  }
 }
 function hideApiNotif(){
-  var n=document.getElementById('apiNotif');
-  if(n)n.classList.remove('show');
-  if(_apiNotifTimer){clearTimeout(_apiNotifTimer);_apiNotifTimer=null;}
+  var o=document.getElementById('apiOverlay');
+  if(o)o.classList.remove('show');
 }
-function dismissApiNotif(openPanel){
+function dismissApiOverlay(){
   hideApiNotif();
-  if(openPanel)setTimeout(function(){openApiPanel();},220);
+  showToast('You can add your key anytime via the API Key button ✦');
+}
+function saveApiOverlay(){
+  var v=document.getElementById('apiOverlayInput').value.trim();
+  var err=document.getElementById('apiOverlayErr');
+  if(!v){err.textContent='Please paste your API key first.';return}
+  if(!v.startsWith('AIza')){err.textContent='That doesn\'t look like a Gemini key. Keys start with AIza…';return}
+  sessionStorage.setItem('gemKey',v);
+  refreshApiDot();
+  hideApiNotif();
+  showToast('API key saved — let\'s explore alternate realities! 🚀');
 }
 
 // ── THEME ─────────────────────────────────────────────────
@@ -1336,7 +1398,7 @@ document.addEventListener('keydown',function(e){
   if((e.ctrlKey||e.metaKey)&&e.key==='4'){e.preventDefault();openPersonaModal()}
   if((e.ctrlKey||e.metaKey)&&e.key==='5'){e.preventDefault();setMode('map')}
   if((e.ctrlKey||e.metaKey)&&e.key==='n'){e.preventDefault();newChat()}
-  if((e.ctrlKey||e.metaKey)&&e.key==='v'&&!e.shiftKey){e.preventDefault();toggleVoice()}
+  if((e.ctrlKey||e.metaKey)&&e.key==='m'&&!e.shiftKey){e.preventDefault();toggleVoice()}
   if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){sendMessage()}
 });
 function hideWelcome(){var w=document.getElementById('welcome');if(w)w.remove()}
@@ -1648,7 +1710,7 @@ function newChat(){
     +'<span class="kbd">Ctrl+1–5</span> Switch Mode &nbsp;'
     +'<span class="kbd">Ctrl+Enter</span> Send &nbsp;'
     +'<span class="kbd">Ctrl+N</span> New Chat &nbsp;'
-    +'<span class="kbd">Ctrl+V</span> Voice &nbsp;'
+    +'<span class="kbd">Ctrl+M</span> Voice &nbsp;'
     +'<span class="kbd">Esc</span> Clear'
     +'</div>';
   msgs.appendChild(w);
